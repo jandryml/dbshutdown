@@ -12,7 +12,7 @@ class DbCheckTask(
     private val healthIndicator: DataSourceHealthIndicator
 ) {
 
-    @Scheduled(fixedRate = 1000L)
+    @Scheduled(fixedRateString = "\${db.status.checkRate:60000}")
     fun checkDBHealth() {
         val status = healthIndicator.health().status
         println("${LocalDateTime.now()}: Checking!")
